@@ -1,0 +1,8 @@
+<html><font color='blue' size='10'> Classificador de Especies</font>
+<br>
+<font color='black'> Versão </font><font color='red'> 1.0</font>
+<br>
+<font color='black'> Autores: </font> 
+<font color='red'> Francisco Gonçalves da Mota Longhini</font>
+<br>
+<font color='red'>Gabriel Sousa Kraszczuk</font></html>

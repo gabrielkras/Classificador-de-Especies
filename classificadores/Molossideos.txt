@@ -1,0 +1,4 @@
+1|Texto Descritivo|c:\CaminhoImagem|Direção|Direção| 
+1'|Texto Descritivo|c:\CaminhoImagem|Direção|Direção| 
+2|Texto Descritivo|c:\CaminhoImagem|Direção|Direção| 
+2'|Texto Descritivo|c:\CaminhoImagem|Direção|Direção| 
