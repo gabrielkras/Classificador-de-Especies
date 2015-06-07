@@ -1,8 +1,16 @@
-<html><font color='blue' size='10'> Classificador de Especies</font>
+<html><font color='blue' size='5'> <b><i>Classificador de Especies</i></b></font>
 <br>
-<font color='black'> Versão </font><font color='red'> 1.0</font>
 <br>
-<font color='black'> Autores: </font> 
-<font color='red'> Francisco Gonçalves da Mota Longhini</font>
+<font color='black'> <b>Versão</b> </font><font color='red'> 1.0</font>
 <br>
-<font color='red'>Gabriel Sousa Kraszczuk</font></html>
+<br>
+<font color='black'> <b>Desenvolvedores:</b> </font>
+<br> 
+<font color='green'> Francisco Gonçalves da Mota Longhini</font>
+<br>
+<font color='green'>Gabriel Sousa Kraszczuk</font>
+<br>
+<br>
+<font color='black'> <b>Descrição:</b> <i>Sistema desenvolvido para auxiliar
+<br> biólogos na classificação de especies.
+<br> </html>

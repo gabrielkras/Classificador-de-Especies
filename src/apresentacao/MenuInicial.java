@@ -23,10 +23,10 @@ import logica.LeitorArquivos;
 
 public class MenuInicial {
 	private JPanel menuInicial;
-	private AcoesDeTela tela;
+	private AcoesDeTela execucaoPrograma;
 	
 	public MenuInicial(AcoesDeTela tela){
-		this.tela = tela;
+		this.execucaoPrograma = tela;
 		gerarMenuInicial();
 		gerarBotaoIniciar();
 		gerarBotaoSair();
@@ -48,16 +48,16 @@ public class MenuInicial {
 		iniciar.setToolTipText("Para Iniciar, Clique aqui");
 		iniciar.setFont(font);
 		iniciar.setBounds(350, 225, 150, 50);
+		iniciar.requestFocus();
 		iniciar.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				tela.botaoIniciar();
+				execucaoPrograma.botaoIniciar();
 				
 			}
 		});
 		menuInicial.add(iniciar);
-		
 	}
 	
 	private void gerarBotaoSair(){
@@ -72,7 +72,7 @@ public class MenuInicial {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				tela.botaoSair();
+				execucaoPrograma.botaoSair();
 				
 			}
 		});
@@ -92,10 +92,10 @@ public class MenuInicial {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				LeitorArquivos arq = new LeitorArquivos();
-				arq.lerArquivoDeVersao("/sobre.txt");
+				arq.lerArquivoDeConfig("/sobre.txt");
 				ImageIcon image = new FabricaDeImagens().obterImagem(Icones.LOGOTIPO);
 				image.setImage(image.getImage().getScaledInstance(100, 120, 100));
-				JOptionPane.showMessageDialog(menuInicial, arq.lerArquivoDeVersao("/sobre.txt"), "Sobre", 0, image);
+				JOptionPane.showMessageDialog(menuInicial, arq.lerArquivoDeConfig("/sobre.txt"), "Sobre", 0, image);
 				
 			}
 		});

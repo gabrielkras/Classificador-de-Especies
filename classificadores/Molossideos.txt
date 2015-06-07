@@ -1,4 +1,5 @@
-1|Texto Descritivo|c:\CaminhoImagem|Direção|Direção| 
-1'|Texto Descritivo|c:\CaminhoImagem|Direção|Direção| 
-2|Texto Descritivo|c:\CaminhoImagem|Direção|Direção| 
-2'|Texto Descritivo|c:\CaminhoImagem|Direção|Direção| 
+RAIZ|<DESCRIÇÃORAIZ>|<CAMINHOIMAGEM>|1|1'|<ESPECIE> 
+1|Lábio superior acentuadamente pregueado formando sulcos verticais profundos; crânio com a porção pré-maxilar do palato ausente, e incisivos superiores distintamente separados na base devido à separação dos ramos nasais dos pré-maxilares| |2|2'| 
+1'|Texto Descritivo 1'|C:/Users/Gabriel S. Kraszczuk/Pictures/Coracao.png|1|2'| 
+2|Texto Descritivo 2|c:\CaminhoImagem|0|0|Pamonha Urdis 
+2'|Texto Descritivo 2'|c:\CaminhoImagem|0|0|Maconhis Eruditus 

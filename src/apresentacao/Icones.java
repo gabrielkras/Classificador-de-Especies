@@ -1,7 +1,8 @@
 package apresentacao;
 
 public enum Icones {
-	LOGOTIPO("/logotipo.png");
+	LOGOTIPO("/logotipo.png"),
+	SEMIMAGEM("/semImagem.jpg");
 	
 	private String caminhoImagem;
 	

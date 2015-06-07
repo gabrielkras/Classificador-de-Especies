@@ -12,68 +12,55 @@ import javax.swing.JPanel;
 import interfaces.AcoesDeTela;
 import interfaces.SaidaPrograma;
 
-public class TelaPrograma implements SaidaPrograma, AcoesDeTela {
+public class TelaPrograma {
 	
 	private JFrame frame;
 	private JPanel container;
+	private AcoesDeTela execucaoDoPrograma;
 	
-	public TelaPrograma(){
-		frame = new JFrame("Classificador");
-		MenuInicial menu = new MenuInicial(this);
-		//container = new JPanel();
-		//container.setLayout(new FlowLayout(FlowLayout.LEFT,370,200));
-		//container.add(menu.getMenuInicial());
+	public TelaPrograma(AcoesDeTela execucaoDoPrograma){
+		this.execucaoDoPrograma = execucaoDoPrograma;
+		gerarFrame();
+	}
+	
+	public void iniciarPrograma(){
+		frame.setVisible(true);
+		habilitarMenuInicial();
+	}
+	
+	private void gerarFrame(){
+		container = new JPanel();
+		container.setSize(800, 600);
+		container.setLayout(new BoxLayout(container,BoxLayout.Y_AXIS));
+		frame = new JFrame("Classificador de Especies");
 		frame.setSize(800,600);
-		frame.add(menu.getMenuInicial());
 		ImageIcon image = new FabricaDeImagens().obterImagem(Icones.LOGOTIPO);
 		frame.setIconImage(image.getImage());
-		//frame.add(new JLabel(new FabricaDeImagens().obterImagem(Icones.LOGOTIPO)));
 		frame.setLocationRelativeTo(null);
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+		frame.add(container);
+	}
+	
+	public void habilitarMenuInicial(){
+		container.removeAll();
+		MenuInicial menu = new MenuInicial(execucaoDoPrograma);
+		container.add(menu.getMenuInicial());
+		container.updateUI();
+	}
+	
+	public TelaDeClassificacao habilitarTelaDeClassificao(){
+		container.removeAll();
+		TelaDeClassificacao tela = new TelaDeClassificacao(execucaoDoPrograma);
+		container.add(tela.getTelaDeClassificacao());
+		container.updateUI();
+		return tela;
+	}
+	
+	public JFrame getFrame(){
+		return frame;
 	}
 
-	@Override
-	public void iniciarPrograma() {
-		frame.setVisible(true);
-		
-	}
 
-	@Override
-	public void finalizarPrograma() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void carregarArquivo() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void botaoIniciar() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void botaoSair() {
-		Runtime.getRuntime().exit(0);
-		
-	}
-
-	@Override
-	public void executarOpcao1() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void executarOpcao2() {
-		// TODO Auto-generated method stub
-		
-	}
 
 }

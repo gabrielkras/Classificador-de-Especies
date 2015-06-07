@@ -6,5 +6,6 @@ public interface AcoesDeTela {
 	void botaoSair();
 	void executarOpcao1();
 	void executarOpcao2();
+	void reiniciarClassificacao();
 
 }

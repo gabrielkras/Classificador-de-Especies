@@ -1,0 +1,9 @@
+<html><font color='red' size='5'> <b>ERRO AO CARREGAR ARQUIVO!</b> </font>
+<br>
+<br>
+<font color='black'> Verifique se o arquivo existe, caso o mesmo
+<br> exista, verifique se a sintaxe está correta.</font>
+<br>
+<br>
+<font color='green'> <i>Para Mais Informações, consulte a documentação</i></font>
+</html>

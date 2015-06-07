@@ -2,6 +2,9 @@ package apresentacao;
 
 import java.io.FileNotFoundException;
 
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+
 import logica.ConteudoMolossideos;
 import logica.ExecucaoPrograma;
 import logica.LeitorArquivos;
@@ -17,21 +20,19 @@ import estrutura.No;
  * @author Gabriel Sousa Kraszczuk*/
 public class Main {
 
-	public static void main(String args[]) throws FileNotFoundException{
-		Arvore arvoreMolossideos = new Arvore(null, null,new ConteudoMolossideos(null,"Raiz","Raiz"));
-		Arvore.inserirNoEsquerdo(arvoreMolossideos.obterNoAtual(), new ConteudoMolossideos(null, "Teste", "Teste"));
-		Arvore no1 = arvoreMolossideos.obterNoAtual();
-		Arvore no1esq = Arvore.obterONoEsquerdo(no1);
-		Arvore no1dir = Arvore.obterONoDireito(no1);
-		//System.out.println(Arvore.obterConteudoDoNoAtual(no1dir).getDescricao());
-		
-		Hash h = new Hash(10);
-		h.armazenarObjeto(new No(new ConteudoMolossideos(null,null,null),null,null), "1");
-		System.out.println(h.retornarObjeto(""));
-		LeitorArquivos leitor = new LeitorArquivos();
-		Hash n = new Hash(100);
-		leitor.carregarArquivos("C:/Users/Gabriel S. Kraszczuk/Documents/GitHub/TrabalhoED2/classificadores/Molossideos.txt", n);
-		
+	public static void main(String args[]) throws FileNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException{
+		try {
+			UIManager.setLookAndFeel(
+			        UIManager.getSystemLookAndFeelClassName());
+		} catch (ClassNotFoundException e) {
+			UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
+		} catch (InstantiationException e) {
+			UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
+		} catch (IllegalAccessException e) {
+			UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
+		} catch (UnsupportedLookAndFeelException e) {
+			UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
+		}
 		ExecucaoPrograma programa = new ExecucaoPrograma();
 		programa.iniciarPrograma();
 		

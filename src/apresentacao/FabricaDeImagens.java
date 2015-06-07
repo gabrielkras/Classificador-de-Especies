@@ -1,5 +1,7 @@
 package apresentacao;
 
+import java.awt.Image;
+import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -17,8 +19,15 @@ public class FabricaDeImagens {
 		}
 	}
 	
-	public ImageIcon obterImagem(String caminho) throws IOException{
-		return new ImageIcon(caminho);
+	public ImageIcon obterImagem(String caminho){
+		ImageIcon image;
+		try{
+			image = new ImageIcon(ImageIO.read(new File(caminho)));
+		}
+		catch(Exception e){
+			image = obterImagem(Icones.SEMIMAGEM);
+		}
+		return image;
 	}
 
 }
