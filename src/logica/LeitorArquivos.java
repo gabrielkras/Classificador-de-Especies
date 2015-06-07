@@ -38,7 +38,7 @@ public class LeitorArquivos {
 			String direcao2 = scan.next();
 			String nomeDaEspecie = scan.next();
 			image = new FabricaDeImagens().obterImagem(caminho);
-			ambiente.armazenarObjeto(new No(new ConteudoMolossideos(image,descricao,nomeDaEspecie),
+			ambiente.armazenarObjeto(new No(new ConteudoNo(image,descricao,nomeDaEspecie),
 					direcao1, direcao2), identificador);
 			System.out.println(identificador);
 			System.out.println(descricao);

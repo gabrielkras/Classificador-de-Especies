@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-import logica.ConteudoMolossideos;
+import logica.ConteudoNo;
 import logica.ExecucaoPrograma;
 import logica.LeitorArquivos;
 import interfaces.Conteudo;
