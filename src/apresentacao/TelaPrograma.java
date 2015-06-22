@@ -32,7 +32,7 @@ public class TelaPrograma {
 		container = new JPanel();
 		container.setSize(800, 600);
 		container.setLayout(new BoxLayout(container,BoxLayout.Y_AXIS));
-		frame = new JFrame("Classificador de Especies");
+		frame = new JFrame("Chave de Identificação de Espécies");
 		frame.setSize(800,600);
 		ImageIcon image = new FabricaDeImagens().obterImagem(Icones.LOGOTIPO);
 		frame.setIconImage(image.getImage());

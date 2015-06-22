@@ -1,4 +1,4 @@
-<html><font color='green' size='5'> <b>ESPÉCIE CLASSIFICADA!</b> </font>
+<html><font color='green' size='5'> <b>ESPÃ‰CIE CLASSIFICADA!</b> </font>
 <br>
 <br>
-<font color='black'> <b><i>
+<font color='black' size='4'> <b><i>

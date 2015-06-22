@@ -1,22 +1,18 @@
 package apresentacao;
 
+import java.awt.Font;
 import java.io.FileNotFoundException;
 
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.plaf.FontUIResource;
 
-import logica.ConteudoNo;
 import logica.ExecucaoPrograma;
-import logica.LeitorArquivos;
-import interfaces.Conteudo;
-import estrutura.Arvore;
-import estrutura.Hash;
-import estrutura.No;
 
 /**
- * Programa Principal - Responsável por alimentar a arvore com as informações e 
+ * Programa Principal - Responsï¿½vel por alimentar a arvore com as informaï¿½ï¿½es e 
  * executar o programa
- * @author Francisco Gonçalves da Mota Longhini
+ * @author Francisco Gonï¿½alves da Mota Longhini
  * @author Gabriel Sousa Kraszczuk*/
 public class Main {
 
@@ -24,6 +20,7 @@ public class Main {
 		try {
 			UIManager.setLookAndFeel(
 			        UIManager.getSystemLookAndFeelClassName());
+			//UIManager.put("JOptionPane.messageFont", new FontUIResource(new Font("Arial",Font.PLAIN,Font.BOLD)));
 		} catch (ClassNotFoundException e) {
 			UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
 		} catch (InstantiationException e) {

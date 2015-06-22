@@ -2,10 +2,10 @@ package estrutura;
 import java.util.ArrayList;
 import java.util.List;
 /**
- * Classe Hash, Estrutura de dados que permite armazenar informações
- * de qualquer tipo (Object). Permite recuperar as informações através
+ * Classe Hash, Estrutura de dados que permite armazenar informaï¿½ï¿½es
+ * de qualquer tipo (Object). Permite recuperar as informaï¿½ï¿½es atravï¿½s
  * de uma chave unica gerada automaticamente para cada elemento
- * @author Francisco Gonçalves da Mota Longhini 
+ * @author Francisco Gonï¿½alves da Mota Longhini 
  * @author Gabriel Sousa Kraszczuk*/
 public class Hash {
 	
@@ -62,19 +62,19 @@ public class Hash {
 		}
 	}
 	/**
-	 * Efetua a Geração da Chave
+	 * Efetua a Geraï¿½ï¿½o da Chave
 	 * @param String objeto
 	 * @return float*/
 	private int gerarChave(String objeto){
 		int tamanhoObjeto = objeto.length();
 		int codigo = 0;
 		for(int k=0; k<tamanhoObjeto; k++){
-			codigo += objeto.charAt(k)+objeto.charAt(tamanhoObjeto-1)+((k+12));
+			codigo += objeto.charAt(k)+objeto.charAt(tamanhoObjeto-1)+((k*2.35));
 		}
 		return codigo%tamanhoTabelaHash;
 	}
 	/**
-	 * Verifica se o objeto, com a respectiva chave já foi inserida
+	 * Verifica se o objeto, com a respectiva chave jï¿½ foi inserida
 	 * na tabela.
 	 * @param String objeto
 	 * @param int chave

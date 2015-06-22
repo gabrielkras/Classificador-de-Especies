@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import interfaces.AcoesDeTela;
 
@@ -12,6 +14,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
@@ -20,9 +23,11 @@ public class TelaDeClassificacao {
 	
 	private JPanel telaDeClassificacao;
 	private AcoesDeTela execucaoPrograma;
+	private List<JLabel> listaDeFigurasOpcao1 = new ArrayList<JLabel>();
 	private JLabel containerImagemOpcao1;
 	private JTextPane containerDescricaoOpcao1;
 	private JTextPane containerDescricaoOpcao2;
+	private List<JLabel> listaDeFigurasOpcao2 = new ArrayList<JLabel>();
 	private JLabel containerImagemOpcao2;
 	
 	public TelaDeClassificacao(AcoesDeTela tela){
@@ -58,19 +63,25 @@ public class TelaDeClassificacao {
 		SimpleAttributeSet sa = new SimpleAttributeSet();
 		StyleConstants.setAlignment(sa, StyleConstants.ALIGN_JUSTIFIED);
 		containerDescricaoOpcao1 = new JTextPane();
-		containerDescricaoOpcao1.setBounds(25,300,256,180);
 		containerDescricaoOpcao1.getStyledDocument().setParagraphAttributes(0, 290, sa, false);
 		containerDescricaoOpcao1.setEditable(false);
 		containerDescricaoOpcao1.setFont(font);
 		containerDescricaoOpcao1.setOpaque(false);
+		containerDescricaoOpcao1.setCaretPosition(0);
 		containerDescricaoOpcao2 = new JTextPane();
-		containerDescricaoOpcao2.setBounds(515,300,256,180);
 		containerDescricaoOpcao2.getStyledDocument().setParagraphAttributes(0, 290, sa, false);
 		containerDescricaoOpcao2.setEditable(false);
 		containerDescricaoOpcao2.setFont(font);
 		containerDescricaoOpcao2.setOpaque(false);
-		telaDeClassificacao.add(containerDescricaoOpcao1);
-		telaDeClassificacao.add(containerDescricaoOpcao2);
+		containerDescricaoOpcao2.setCaretPosition(0);
+		JScrollPane containerScrollOpcao1 = new JScrollPane(containerDescricaoOpcao1);
+		JScrollPane containerScrollOpcao2 = new JScrollPane(containerDescricaoOpcao2);
+		containerScrollOpcao1.setBounds(25,325,256,150);
+		containerScrollOpcao2.setBounds(515,325,256,150);
+		//containerScrollOpcao1.setVisible(true);
+		telaDeClassificacao.add(containerScrollOpcao1);
+		//telaDeClassificacao.add(containerDescricaoOpcao1);
+		telaDeClassificacao.add(containerScrollOpcao2);
 	}
 	
 	private void gerarBotaoOpcao1(){
@@ -78,8 +89,8 @@ public class TelaDeClassificacao {
 		JButton opcao1 = new JButton();
 		opcao1.setForeground(Color.BLUE);
 		opcao1.requestFocus();
-		opcao1.setText("OP«√O A");
-		opcao1.setToolTipText("Clique aqui para executar a OP«√O A");
+		opcao1.setText("OP√á√ÉO A");
+		opcao1.setToolTipText("Clique aqui para executar a OP√á√ÉO A");
 		opcao1.setFont(font);
 		opcao1.setBounds(70, 500, 150, 50);
 		opcao1.addActionListener(new ActionListener() {
@@ -97,8 +108,8 @@ public class TelaDeClassificacao {
 		Font font = new Font("SansSerif", Font.BOLD, 20);
 		JButton opcao2 = new JButton();
 		opcao2.setForeground(Color.BLUE);
-		opcao2.setText("OP«√O B");
-		opcao2.setToolTipText("Clique aqui para executar a OP«√O B");
+		opcao2.setText("OP√á√ÉO B");
+		opcao2.setToolTipText("Clique aqui para executar a OP√á√ÉO B");
 		opcao2.setFont(font);
 		opcao2.setBounds(570, 500, 150, 50);
 		opcao2.addActionListener(new ActionListener() {
@@ -112,12 +123,33 @@ public class TelaDeClassificacao {
 		telaDeClassificacao.add(opcao2);
 	}
 	
+	private void gerarBotaoManipulacaoImagem(String nomeBotao,
+			String textoDicaDoBotao, int posicaoX, int posicaoY){
+		Font font = new Font("SansSerif", Font.BOLD, 20);
+		JButton imagem = new JButton();
+		imagem.setForeground(Color.BLUE);
+		imagem.setText(nomeBotao);
+		imagem.setToolTipText(textoDicaDoBotao);
+		imagem.setFont(font);
+		imagem.setBounds(posicaoX, posicaoY, 150, 50);
+		imagem.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				execucaoPrograma.executarOpcao2();
+				
+			}
+		});
+		telaDeClassificacao.add(imagem);
+	}
+	
+	
 	private void gerarBotaoSair(){
 		Font font = new Font("SansSerif", Font.BOLD, 15);
 		JButton sair = new JButton();
 		sair.setForeground(Color.RED);
 		sair.setText("SAIR");
-		sair.setToolTipText("<html>Se vocÍ clicar aqui <br> o programa ser· <font color='red'> <b> ENCERRADO </b> </font></html>");
+		sair.setToolTipText("<html>Se voc√™ clicar aqui <br> o programa ser√° <font color='red'> <b> ENCERRADO </b> </font></html>");
 		sair.setFont(font);
 		sair.setBounds(325, 100, 150, 50);
 		sair.addActionListener(new ActionListener() {
@@ -135,8 +167,8 @@ public class TelaDeClassificacao {
 		Font font = new Font("SansSerif", Font.BOLD, 15);
 		JButton reiniciar = new JButton();
 		reiniciar.setForeground(Color.BLACK);
-		reiniciar.setText("<html> <center>REINICIAR<br>CLASSIFICA«√O<center></html>");
-		reiniciar.setToolTipText("Clique aqui para reiniciar a classificaÁ„o");
+		reiniciar.setText("<html> <center>REINICIAR<br>CLASSIFICA√á√ÉO<center></html>");
+		reiniciar.setToolTipText("Clique aqui para reiniciar a classifica√ß√£o");
 		reiniciar.setFont(font);
 		reiniciar.setBounds(325, 25, 150, 50);
 		reiniciar.addActionListener(new ActionListener() {
@@ -152,9 +184,11 @@ public class TelaDeClassificacao {
 	
 	public void setDescricaoOpcao1(String descricao){
 		containerDescricaoOpcao1.setText(descricao);
+		containerDescricaoOpcao1.setCaretPosition(0);
 	}
 	public void setDescricaoOpcao2(String descricao){
 		containerDescricaoOpcao2.setText(descricao);
+		containerDescricaoOpcao2.setCaretPosition(0);
 	}
 	public void setImagemOpcao1(ImageIcon image){
 		image.setImage(image.getImage().getScaledInstance(256, 256, 100));

@@ -1,18 +1,18 @@
 <html>
-<font color='blue' size='5'> <b> Classificador de Espécies</b></font>
+<font color='blue' size='5'> <b> Chave de IdentificaÃ§Ã£o de EspÃ©cies</b></font>
 <br>
 <br>
-<font color='black' size='3'> Se você deseja reiniciar a classificação
+<font color='black' size='3'> Se vocÃª deseja reiniciar a classificaÃ§Ã£o
 <br>
 com base na mesma estrutura utilizada,
 <br>
-selecione a opção:</font>
+selecione a opÃ§Ã£o:</font>
 <font color='red' size='3'> <b> REINICIAR</b></font>
 <br>
 <br>
 <font color='black' size='3'>Caso prefira escolher outra estrutura,
 <br>
-selecione a opção:</font>
-<font color='red' size='3'> <b> ESCOLHER NOVA</b> </font>
+selecione a opÃ§Ã£o:</font>
+<font color='red' size='3'> <b> OBTER NOVO</b> </font>
 <br>
 </html>

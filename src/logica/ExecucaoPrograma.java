@@ -38,7 +38,8 @@ public class ExecucaoPrograma implements AcoesDeTela, SaidaPrograma{
 
 	@Override
 	public void botaoIniciar() {
-		carregarArquivo();
+		//carregarArquivo();
+		carregarArquivoDeEstruturaExistente(Especies.MOLOSSIDEOS);
 		
 	}
 
@@ -54,7 +55,7 @@ public class ExecucaoPrograma implements AcoesDeTela, SaidaPrograma{
 			if((elementosDaEstrutura.retornarObjeto(opcaoA.getNoEsquerdo()) == null)
 					&& (elementosDaEstrutura.retornarObjeto(opcaoA.getNoDireito()) == null)){
 					JOptionPane.showMessageDialog(telaDoPrograma.getFrame(), estruturaArquivos.lerArquivoDeConfig("/MSG-CLASSIFICACAO-ESPECIE.txt")
-							+opcaoA.getConteudo().getNomeDaEspecie()+"</i></b></font></html>", "Classificador de Esp�cie", 3);
+							+opcaoA.getConteudo().getNomeDaEspecie()+"</i></b></font></html>", "Chave de Identificação de Espécies", 3);
 			}
 			else{
 				opcaoB = (No) elementosDaEstrutura.retornarObjeto(opcaoA.getNoDireito());
@@ -63,7 +64,6 @@ public class ExecucaoPrograma implements AcoesDeTela, SaidaPrograma{
 			}
 		}
 		catch(NullPointerException e){
-			//JOptionPane.showMessageDialog(telaDoPrograma.getFrame(), estruturaArquivos.lerArquivoDeConfig("/MSG-ERRO-01.txt"), "ERRO - 001", 0);
 		}
 	}
 
@@ -73,7 +73,7 @@ public class ExecucaoPrograma implements AcoesDeTela, SaidaPrograma{
 			if((elementosDaEstrutura.retornarObjeto(opcaoB.getNoEsquerdo()) == null)
 				&& (elementosDaEstrutura.retornarObjeto(opcaoB.getNoDireito()) == null)){
 				JOptionPane.showMessageDialog(telaDoPrograma.getFrame(), estruturaArquivos.lerArquivoDeConfig("/MSG-CLASSIFICACAO-ESPECIE.txt")
-						+opcaoB.getConteudo().getNomeDaEspecie()+"</i></b></font></html>", "Classificador de Esp�cie", 3);
+						+opcaoB.getConteudo().getNomeDaEspecie()+"</i></b></font></html>", "Chave de Identificação de Espécies", 3);
 			}
 			else{
 				opcaoA = (No) elementosDaEstrutura.retornarObjeto(opcaoB.getNoEsquerdo());
@@ -82,8 +82,6 @@ public class ExecucaoPrograma implements AcoesDeTela, SaidaPrograma{
 			}
 		}
 		catch(NullPointerException e){
-	//			JOptionPane.showMessageDialog(telaDoPrograma.getFrame(), estruturaArquivos.lerArquivoDeConfig("/MSG-CLASSIFICACAO-ESPECIE.txt")
-	//					+opcaoB.getConteudo().getNomeDaEspecie()+"</i></font></html>", "Classificador de Esp�cie", 3);
 			
 		}
 		
@@ -115,6 +113,7 @@ public class ExecucaoPrograma implements AcoesDeTela, SaidaPrograma{
 		catch(RuntimeException | FileNotFoundException e){
 			JOptionPane.showMessageDialog(telaDoPrograma.getFrame(), estruturaArquivos.lerArquivoDeConfig("/MSG-ERRO-01.txt"), "ERRO - 001", 0);
 			telaDoPrograma.habilitarMenuInicial();
+			System.out.println(e);
 			return;
 		}
 		
@@ -146,7 +145,7 @@ public class ExecucaoPrograma implements AcoesDeTela, SaidaPrograma{
 		opcoes[0] = "REINICIAR";
 		opcoes[1] = "OBTER NOVO";
 		resultado = JOptionPane.showOptionDialog(telaDoPrograma.getFrame(),
-				estruturaArquivos.lerArquivoDeConfig("/MSG-REINICIARCLASSIFICACAO.txt"), "Classificador de Esp�cies", 0, JOptionPane.INFORMATION_MESSAGE,
+				estruturaArquivos.lerArquivoDeConfig("/MSG-REINICIARCLASSIFICACAO.txt"), "Chave de Identificação de Espécies", 0, JOptionPane.INFORMATION_MESSAGE,
 				image, opcoes, null);
 		System.out.println(resultado);
 		if(resultado == 0){
@@ -156,12 +155,21 @@ public class ExecucaoPrograma implements AcoesDeTela, SaidaPrograma{
 		else if(resultado == 1){
 			carregarArquivo();
 		}
-//		int result = JOptionPane.showConfirmDialog(telaDoPrograma.getFrame(), "teste", "Title",JOptionPane.YES_NO_OPTION);
-//		if(result == JOptionPane.YES_OPTION){
-//			
-//		}
-//		carregarArquivo();
 		
+	}
+	
+	private void carregarArquivoDeEstruturaExistente(Especies especies){
+		try{
+			estruturaArquivos.carregarArquivos(especies.obterCaminhoEstruturaEspecie(), elementosDaEstrutura);
+			telaDeClassificacao = telaDoPrograma.habilitarTelaDeClassificao();
+			iniciarEstrutura();
+		}
+		catch(RuntimeException | FileNotFoundException e){
+			JOptionPane.showMessageDialog(telaDoPrograma.getFrame(), estruturaArquivos.lerArquivoDeConfig("/MSG-ERRO-01.txt"), "ERRO - 001", 0);
+			telaDoPrograma.habilitarMenuInicial();
+			System.out.println(e);
+			return;
+		}
 	}
 	
 	private void zerarVariaveisDeAmbiente(){

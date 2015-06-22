@@ -18,9 +18,9 @@ import estrutura.Hash;
 import estrutura.No;
 
 /**
- * Classe respons·vel por efetuar a leitura da estrutura armazenada em
+ * Classe respons√°vel por efetuar a leitura da estrutura armazenada em
  * arquivo.
- * @author Francisco GonÁalves da Mota Longhini
+ * @author Francisco Gon√ßalves da Mota Longhini
  * @author Gabriel Sousa Kraszczuk*/
 public class LeitorArquivos {
 	

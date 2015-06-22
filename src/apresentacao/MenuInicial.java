@@ -82,9 +82,9 @@ public class MenuInicial {
 	private void gerarBotaoSobre(){
 		Font font = new Font("SansSerif", Font.BOLD, 20);
 		JButton sobre = new JButton();
-		sobre.setForeground(Color.getHSBColor(44, 90, 64));
+		sobre.setForeground(Color.RED);
 		sobre.setText("Sobre");
-		sobre.setToolTipText("Para Mais Informações, Clique aqui!");
+		sobre.setToolTipText("Para Mais Informaï¿½ï¿½es, Clique aqui!");
 		sobre.setFont(font);
 		sobre.setBounds(350, 425, 150, 50);
 		sobre.addActionListener(new ActionListener() {
@@ -111,10 +111,10 @@ public class MenuInicial {
 	}
 	
 	private void gerarNomePrograma(){
-		JLabel nomePrograma = new JLabel("Classificador de Especies");
+		JLabel nomePrograma = new JLabel("<html>Chave de IdentificaÃ§Ã£o<br> <center>de EspÃ©cies</center></html>");
 		Font font = new Font(Font.DIALOG, Font.BOLD, 28);
 		nomePrograma.setFont(font);
-		nomePrograma.setBounds(250, 50, 400, 50);
+		nomePrograma.setBounds(270, 50, 400, 100);
 		menuInicial.add(nomePrograma);
 	}
 	
