@@ -19,8 +19,9 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import enumeradores.Botao;
-import enumeradores.Icones;
+import elementosDeTela.Botao;
+import elementosDeTela.FabricaDeImagens;
+import elementosDeTela.Icones;
 import logica.LeitorArquivos;
 
 public class MenuInicial {
@@ -83,7 +84,7 @@ public class MenuInicial {
 		ImageIcon image = new FabricaDeImagens().obterImagem(Icones.LOGOTIPO);
 		image.setImage(image.getImage().getScaledInstance(150, 150, 100));
 		JLabel logotipo = new JLabel(image);
-		logotipo.setBounds(20, 10, 150, 150);
+		logotipo.setBounds(25, 25, 150, 150);
 		menuInicial.add(logotipo);
 	}
 	

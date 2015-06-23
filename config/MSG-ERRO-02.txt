@@ -1,0 +1,10 @@
+<html><font color='#B8860B' size='5'> <b>ERRO AO INICIAR CLASSIFICAÇÃO</b> </font>
+<br>
+<br>
+<font color='black'> Você não selecionou um classificador padrão,
+<br> ou então, não selecionou um arquivo classificador
+<br> válido!</font>
+<br>
+<br>
+<font color='green'> <i>Para Mais Informações, consulte a documentação</i></font>
+</html>

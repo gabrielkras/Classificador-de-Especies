@@ -1,4 +1,4 @@
-package enumeradores;
+package elementosDeTela;
 
 public class Dimensao {
 	private int altura;

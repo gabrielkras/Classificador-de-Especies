@@ -7,10 +7,10 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-import apresentacao.FabricaDeImagens;
 import apresentacao.TelaDeClassificacao;
 import apresentacao.TelaPrograma;
-import enumeradores.Icones;
+import elementosDeTela.FabricaDeImagens;
+import elementosDeTela.Icones;
 import estrutura.Hash;
 import estrutura.No;
 import interfaces.AcoesDeTela;
@@ -38,9 +38,7 @@ public class ExecucaoPrograma implements AcoesDeTela, SaidaPrograma{
 
 	@Override
 	public void botaoIniciar() {
-		//carregarArquivo();
-		carregarArquivoDeEstruturaExistente(Classificadores.MOLOSSIDEOS);
-		
+		telaDoPrograma.habilitarTelaDeSelecao();
 	}
 
 	@Override
@@ -124,6 +122,38 @@ public class ExecucaoPrograma implements AcoesDeTela, SaidaPrograma{
 		}
 		
 	}
+	
+	@Override
+	public void escolherClassificador(Classificadores classificadores) {
+		if(classificadores != null){
+			carregarArquivoDeEstruturaExistente(classificadores);
+		}
+		else{
+			carregarArquivo();
+		}
+		
+	}
+	
+	@Override
+	public void reiniciarClassificacao() {
+		String[] opcoes = new String[2];
+		ImageIcon image = new FabricaDeImagens().obterImagem(Icones.LOGOTIPO);
+		image.setImage(image.getImage().getScaledInstance(100, 120, 100));
+		int resultado;
+		opcoes[0] = "REINICIAR";
+		opcoes[1] = "OBTER NOVO";
+		resultado = JOptionPane.showOptionDialog(telaDoPrograma.getFrame(),
+				estruturaArquivos.lerArquivoDeConfig("/MSG-REINICIARCLASSIFICACAO.txt"), "Chave Artificial para Identificação de Espécies", 0, JOptionPane.INFORMATION_MESSAGE,
+				image, opcoes, null);
+		if(resultado == 0){
+			iniciarEstrutura();
+			atualizarOpcoes();
+		}
+		else if(resultado == 1){
+			carregarArquivo();
+		}
+		
+	}
 
 	private void iniciarEstrutura() {
 		No raiz = (No) elementosDaEstrutura.retornarObjeto("RAIZ");
@@ -142,27 +172,7 @@ public class ExecucaoPrograma implements AcoesDeTela, SaidaPrograma{
 		telaDeClassificacao.setImagemOpcao2(opcaoB.getConteudo().getListaImage());
 	}
 
-	@Override
-	public void reiniciarClassificacao() {
-		String[] opcoes = new String[2];
-		ImageIcon image = new FabricaDeImagens().obterImagem(Icones.LOGOTIPO);
-		image.setImage(image.getImage().getScaledInstance(100, 120, 100));
-		int resultado;
-		opcoes[0] = "REINICIAR";
-		opcoes[1] = "OBTER NOVO";
-		resultado = JOptionPane.showOptionDialog(telaDoPrograma.getFrame(),
-				estruturaArquivos.lerArquivoDeConfig("/MSG-REINICIARCLASSIFICACAO.txt"), "Chave Artificial para Identificação de Espécies", 0, JOptionPane.INFORMATION_MESSAGE,
-				image, opcoes, null);
-		System.out.println(resultado);
-		if(resultado == 0){
-			iniciarEstrutura();
-			atualizarOpcoes();
-		}
-		else if(resultado == 1){
-			carregarArquivo();
-		}
-		
-	}
+	
 	
 	private void carregarArquivoDeEstruturaExistente(Classificadores especies){
 		try{
@@ -184,6 +194,8 @@ public class ExecucaoPrograma implements AcoesDeTela, SaidaPrograma{
 		opcaoA = null;
 		opcaoB = null;
 	}
+
+	
 
 
 }

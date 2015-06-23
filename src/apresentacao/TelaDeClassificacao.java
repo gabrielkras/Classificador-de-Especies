@@ -21,8 +21,8 @@ import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 
 import logica.LeitorArquivos;
-import enumeradores.Botao;
-import enumeradores.Icones;
+import elementosDeTela.Botao;
+import elementosDeTela.Icones;
 
 public class TelaDeClassificacao {
 	

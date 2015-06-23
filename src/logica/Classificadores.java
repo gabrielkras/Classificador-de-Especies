@@ -2,7 +2,7 @@ package logica;
 
 public enum Classificadores {
 	
-	MOLOSSIDEOS("classificadores/molossideos/MolossideosFinal.txt");
+	MOLOSSIDEOS("classificadores/molossideos/Molossideos.txt");
 	
 	private String caminhoEstruturaClassificacao;
 	

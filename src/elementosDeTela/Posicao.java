@@ -1,4 +1,4 @@
-package enumeradores;
+package elementosDeTela;
 
 public class Posicao {
 	private int posicaoEixoX;

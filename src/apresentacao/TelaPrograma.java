@@ -9,7 +9,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import enumeradores.Icones;
+import elementosDeTela.FabricaDeImagens;
+import elementosDeTela.Icones;
 import interfaces.AcoesDeTela;
 import interfaces.SaidaPrograma;
 
@@ -56,6 +57,13 @@ public class TelaPrograma {
 		container.add(tela.getTelaDeClassificacao());
 		container.updateUI();
 		return tela;
+	}
+	
+	public void habilitarTelaDeSelecao(){
+		container.removeAll();
+		TelaDeSelecao telaDeSelecao = new TelaDeSelecao(execucaoDoPrograma);
+		container.add(telaDeSelecao.getTelaDeSelecao());
+		container.updateUI();
 	}
 	
 	public JFrame getFrame(){

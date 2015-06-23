@@ -1,4 +1,4 @@
-package enumeradores;
+package elementosDeTela;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -25,6 +25,9 @@ public enum Botao {
 	INICIAR("Iniciar", "Para Iniciar, Clique Aqui",
 			new Posicao(350,225), new Dimensao(150,50),
 			new Font("SansSerif", Font.BOLD, 20),Color.BLUE),
+	INICIAR_CLASSIFICACAO("INICIAR CLASSIFICAÇÃO", "Para Iniciar, Clique Aqui",
+			new Posicao(250,500), new Dimensao(300,50),
+			new Font("SansSerif", Font.BOLD, 20),Color.RED),
 	REINICIAR("<html><center>REINICIAR<br>CLASSIFICAÇÃO</center></html>", "Para fechar o programa, Clique Aqui",
 			new Posicao(325,25), new Dimensao(150,50),
 			new Font("SansSerif", Font.BOLD, 15), Color.BLACK),

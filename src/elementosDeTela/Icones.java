@@ -1,4 +1,4 @@
-package enumeradores;
+package elementosDeTela;
 
 public enum Icones {
 	LOGOTIPO("/logotipo.png"),
