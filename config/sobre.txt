@@ -1,5 +1,5 @@
 <html>
-<font color='blue' size='5'> <b><i>Chave de Identificação de Espécies</i></b></font>
+<font color='blue' size='5'> <b><i>Chave Artificial para Identificação de Espécies</i></b></font>
 <br>
 <br>
 <font color='black'> <b>Versão</b> </font><font color='red'> 1.0</font>

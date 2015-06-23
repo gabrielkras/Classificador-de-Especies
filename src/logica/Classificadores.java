@@ -1,12 +1,12 @@
 package logica;
 
-public enum Especies {
+public enum Classificadores {
 	
 	MOLOSSIDEOS("classificadores/molossideos/MolossideosFinal.txt");
 	
 	private String caminhoEstruturaClassificacao;
 	
-	Especies(String caminhoEstruturaClassificacao){
+	Classificadores(String caminhoEstruturaClassificacao){
 		this.caminhoEstruturaClassificacao = caminhoEstruturaClassificacao;
 	}
 	

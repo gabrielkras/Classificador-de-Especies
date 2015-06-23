@@ -1,14 +1,16 @@
 package interfaces;
 
+import java.util.List;
+
 import javax.swing.ImageIcon;
 
 public interface Conteudo {
 	
-	void setImagem(ImageIcon imagem);
+	void setListaImagem(List<ImageIcon> imagem);
 	void setDescricao(String descricao);
 	void setNomeDaEspecie(String nomeDaEspecie);
 	
-	ImageIcon getImage();
+	List<ImageIcon> getListaImage();
 	String getDescricao();
 	String getNomeDaEspecie();
 

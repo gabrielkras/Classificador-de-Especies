@@ -8,6 +8,8 @@ import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
+import enumeradores.Icones;
+
 public class FabricaDeImagens {
 	
 	public ImageIcon obterImagem(Icones imagem){

@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import enumeradores.Icones;
 import interfaces.AcoesDeTela;
 import interfaces.SaidaPrograma;
 
@@ -32,7 +33,7 @@ public class TelaPrograma {
 		container = new JPanel();
 		container.setSize(800, 600);
 		container.setLayout(new BoxLayout(container,BoxLayout.Y_AXIS));
-		frame = new JFrame("Chave de Identificação de Espécies");
+		frame = new JFrame("Chave Artificial para Identificação de Espécies");
 		frame.setSize(800,600);
 		ImageIcon image = new FabricaDeImagens().obterImagem(Icones.LOGOTIPO);
 		frame.setIconImage(image.getImage());

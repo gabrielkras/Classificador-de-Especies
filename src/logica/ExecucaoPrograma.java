@@ -8,9 +8,9 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import apresentacao.FabricaDeImagens;
-import apresentacao.Icones;
 import apresentacao.TelaDeClassificacao;
 import apresentacao.TelaPrograma;
+import enumeradores.Icones;
 import estrutura.Hash;
 import estrutura.No;
 import interfaces.AcoesDeTela;
@@ -39,7 +39,7 @@ public class ExecucaoPrograma implements AcoesDeTela, SaidaPrograma{
 	@Override
 	public void botaoIniciar() {
 		//carregarArquivo();
-		carregarArquivoDeEstruturaExistente(Especies.MOLOSSIDEOS);
+		carregarArquivoDeEstruturaExistente(Classificadores.MOLOSSIDEOS);
 		
 	}
 
@@ -48,6 +48,12 @@ public class ExecucaoPrograma implements AcoesDeTela, SaidaPrograma{
 		Runtime.getRuntime().exit(0);
 		
 	}
+	
+	@Override
+	public void botaoVoltar(){
+		zerarVariaveisDeAmbiente();
+		telaDoPrograma.habilitarMenuInicial();
+	}
 
 	@Override
 	public void executarOpcao1() {
@@ -55,7 +61,7 @@ public class ExecucaoPrograma implements AcoesDeTela, SaidaPrograma{
 			if((elementosDaEstrutura.retornarObjeto(opcaoA.getNoEsquerdo()) == null)
 					&& (elementosDaEstrutura.retornarObjeto(opcaoA.getNoDireito()) == null)){
 					JOptionPane.showMessageDialog(telaDoPrograma.getFrame(), estruturaArquivos.lerArquivoDeConfig("/MSG-CLASSIFICACAO-ESPECIE.txt")
-							+opcaoA.getConteudo().getNomeDaEspecie()+"</i></b></font></html>", "Chave de Identificação de Espécies", 3);
+							+opcaoA.getConteudo().getNomeDaEspecie()+"</i></b></font></html>", "Chave Artificial para Identificação de Espécies", 3);
 			}
 			else{
 				opcaoB = (No) elementosDaEstrutura.retornarObjeto(opcaoA.getNoDireito());
@@ -73,7 +79,7 @@ public class ExecucaoPrograma implements AcoesDeTela, SaidaPrograma{
 			if((elementosDaEstrutura.retornarObjeto(opcaoB.getNoEsquerdo()) == null)
 				&& (elementosDaEstrutura.retornarObjeto(opcaoB.getNoDireito()) == null)){
 				JOptionPane.showMessageDialog(telaDoPrograma.getFrame(), estruturaArquivos.lerArquivoDeConfig("/MSG-CLASSIFICACAO-ESPECIE.txt")
-						+opcaoB.getConteudo().getNomeDaEspecie()+"</i></b></font></html>", "Chave de Identificação de Espécies", 3);
+						+opcaoB.getConteudo().getNomeDaEspecie()+"</i></b></font></html>", "Chave Artificial para Identificação de Espécies", 3);
 			}
 			else{
 				opcaoA = (No) elementosDaEstrutura.retornarObjeto(opcaoB.getNoEsquerdo());
@@ -124,16 +130,16 @@ public class ExecucaoPrograma implements AcoesDeTela, SaidaPrograma{
 		opcaoA = (No) elementosDaEstrutura.retornarObjeto(raiz.getNoEsquerdo());
 		opcaoB = (No) elementosDaEstrutura.retornarObjeto(raiz.getNoDireito());
 		telaDeClassificacao.setDescricaoOpcao1(opcaoA.getConteudo().getDescricao());
-		telaDeClassificacao.setImagemOpcao1(opcaoA.getConteudo().getImage());
+		telaDeClassificacao.setImagemOpcao1(opcaoA.getConteudo().getListaImage());
 		telaDeClassificacao.setDescricaoOpcao2(opcaoB.getConteudo().getDescricao());
-		telaDeClassificacao.setImagemOpcao2(opcaoB.getConteudo().getImage());
+		telaDeClassificacao.setImagemOpcao2(opcaoB.getConteudo().getListaImage());
 	}
 	
 	private void atualizarOpcoes() throws NullPointerException {
 		telaDeClassificacao.setDescricaoOpcao1(opcaoA.getConteudo().getDescricao());
-		telaDeClassificacao.setImagemOpcao1(opcaoA.getConteudo().getImage());
+		telaDeClassificacao.setImagemOpcao1(opcaoA.getConteudo().getListaImage());
 		telaDeClassificacao.setDescricaoOpcao2(opcaoB.getConteudo().getDescricao());
-		telaDeClassificacao.setImagemOpcao2(opcaoB.getConteudo().getImage());
+		telaDeClassificacao.setImagemOpcao2(opcaoB.getConteudo().getListaImage());
 	}
 
 	@Override
@@ -145,7 +151,7 @@ public class ExecucaoPrograma implements AcoesDeTela, SaidaPrograma{
 		opcoes[0] = "REINICIAR";
 		opcoes[1] = "OBTER NOVO";
 		resultado = JOptionPane.showOptionDialog(telaDoPrograma.getFrame(),
-				estruturaArquivos.lerArquivoDeConfig("/MSG-REINICIARCLASSIFICACAO.txt"), "Chave de Identificação de Espécies", 0, JOptionPane.INFORMATION_MESSAGE,
+				estruturaArquivos.lerArquivoDeConfig("/MSG-REINICIARCLASSIFICACAO.txt"), "Chave Artificial para Identificação de Espécies", 0, JOptionPane.INFORMATION_MESSAGE,
 				image, opcoes, null);
 		System.out.println(resultado);
 		if(resultado == 0){
@@ -158,7 +164,7 @@ public class ExecucaoPrograma implements AcoesDeTela, SaidaPrograma{
 		
 	}
 	
-	private void carregarArquivoDeEstruturaExistente(Especies especies){
+	private void carregarArquivoDeEstruturaExistente(Classificadores especies){
 		try{
 			estruturaArquivos.carregarArquivos(especies.obterCaminhoEstruturaEspecie(), elementosDaEstrutura);
 			telaDeClassificacao = telaDoPrograma.habilitarTelaDeClassificao();

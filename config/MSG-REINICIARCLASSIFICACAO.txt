@@ -1,5 +1,5 @@
 <html>
-<font color='blue' size='5'> <b> Chave de Identificação de Espécies</b></font>
+<font color='blue' size='5'> <b> Chave Artificial para Identificação de Espécies</b></font>
 <br>
 <br>
 <font color='black' size='3'> Se você deseja reiniciar a classificação

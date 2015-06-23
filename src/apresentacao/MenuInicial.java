@@ -19,6 +19,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import enumeradores.Botao;
+import enumeradores.Icones;
 import logica.LeitorArquivos;
 
 public class MenuInicial {
@@ -28,9 +30,9 @@ public class MenuInicial {
 	public MenuInicial(AcoesDeTela tela){
 		this.execucaoPrograma = tela;
 		gerarMenuInicial();
-		gerarBotaoIniciar();
-		gerarBotaoSair();
-		gerarBotaoSobre();
+		gerarBotao(Botao.INICIAR);
+		gerarBotao(Botao.SAIR);
+		gerarBotao(Botao.SOBRE);
 		gerarLogotipo();
 		gerarNomePrograma();
 	}
@@ -40,66 +42,41 @@ public class MenuInicial {
 		menuInicial.setLayout(null);
 	}
 	
-	private void gerarBotaoIniciar(){
-		Font font = new Font("SansSerif", Font.BOLD, 20);
-		JButton iniciar = new JButton();
-		iniciar.setForeground(Color.BLUE);
-		iniciar.setText("Iniciar");
-		iniciar.setToolTipText("Para Iniciar, Clique aqui");
-		iniciar.setFont(font);
-		iniciar.setBounds(350, 225, 150, 50);
-		iniciar.requestFocus();
-		iniciar.addActionListener(new ActionListener() {
+	private void gerarBotao(final Botao botao){
+		int x = botao.getPosicao().getX();
+		int y = botao.getPosicao().getY();
+		int altura = botao.getDimensao().getAltura();
+		int largura= botao.getDimensao().getLargura();
+		JButton buttom = new JButton();
+		buttom.setForeground(botao.getCorDoTexto());
+		buttom.setText(botao.getTextoBotao());
+		buttom.setToolTipText(botao.getTextoDicaDoBotao());
+		buttom.setFont(botao.getFont());
+		buttom.setBounds(x,y,largura,altura);
+		buttom.requestFocus();
+		buttom.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				execucaoPrograma.botaoIniciar();
+				switch(botao){
+				case INICIAR:
+					execucaoPrograma.botaoIniciar();
+					break;
+				case SAIR:
+					execucaoPrograma.botaoSair();
+					break;
+				case SOBRE:
+					LeitorArquivos arq = new LeitorArquivos();
+					arq.lerArquivoDeConfig("/sobre.txt");
+					ImageIcon image = new FabricaDeImagens().obterImagem(Icones.LOGOTIPO);
+					image.setImage(image.getImage().getScaledInstance(100, 120, 100));
+					JOptionPane.showMessageDialog(menuInicial, arq.lerArquivoDeConfig("/sobre.txt"), "Sobre", 0, image);
+					break;
+				}
 				
 			}
 		});
-		menuInicial.add(iniciar);
-	}
-	
-	private void gerarBotaoSair(){
-		Font font = new Font("SansSerif", Font.BOLD, 20);
-		JButton sair = new JButton();
-		sair.setForeground(Color.BLACK);
-		sair.setText("Sair");
-		sair.setToolTipText("Para Fechar o programa, Clique aqui");
-		sair.setFont(font);
-		sair.setBounds(350, 325, 150, 50);
-		sair.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				execucaoPrograma.botaoSair();
-				
-			}
-		});
-		menuInicial.add(sair);
-	}
-	
-	private void gerarBotaoSobre(){
-		Font font = new Font("SansSerif", Font.BOLD, 20);
-		JButton sobre = new JButton();
-		sobre.setForeground(Color.RED);
-		sobre.setText("Sobre");
-		sobre.setToolTipText("Para Mais Informa��es, Clique aqui!");
-		sobre.setFont(font);
-		sobre.setBounds(350, 425, 150, 50);
-		sobre.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				LeitorArquivos arq = new LeitorArquivos();
-				arq.lerArquivoDeConfig("/sobre.txt");
-				ImageIcon image = new FabricaDeImagens().obterImagem(Icones.LOGOTIPO);
-				image.setImage(image.getImage().getScaledInstance(100, 120, 100));
-				JOptionPane.showMessageDialog(menuInicial, arq.lerArquivoDeConfig("/sobre.txt"), "Sobre", 0, image);
-				
-			}
-		});
-		menuInicial.add(sobre);
+		menuInicial.add(buttom);
 	}
 	
 	private void gerarLogotipo(){
@@ -111,7 +88,7 @@ public class MenuInicial {
 	}
 	
 	private void gerarNomePrograma(){
-		JLabel nomePrograma = new JLabel("<html>Chave de Identificação<br> <center>de Espécies</center></html>");
+		JLabel nomePrograma = new JLabel("<html><center>Chave Artificial para <br> Identificação de Espécies</center></html>");
 		Font font = new Font(Font.DIALOG, Font.BOLD, 28);
 		nomePrograma.setFont(font);
 		nomePrograma.setBounds(270, 50, 400, 100);

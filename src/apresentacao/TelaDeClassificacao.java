@@ -13,30 +13,41 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 
+import logica.LeitorArquivos;
+import enumeradores.Botao;
+import enumeradores.Icones;
+
 public class TelaDeClassificacao {
 	
 	private JPanel telaDeClassificacao;
 	private AcoesDeTela execucaoPrograma;
-	private List<JLabel> listaDeFigurasOpcao1 = new ArrayList<JLabel>();
+	private List<ImageIcon> listaDeFigurasOpcao1 = new ArrayList<ImageIcon>();
+	private int indiceDaFiguraAtualOpcao1 = 0;
 	private JLabel containerImagemOpcao1;
 	private JTextPane containerDescricaoOpcao1;
 	private JTextPane containerDescricaoOpcao2;
-	private List<JLabel> listaDeFigurasOpcao2 = new ArrayList<JLabel>();
+	private List<ImageIcon> listaDeFigurasOpcao2 = new ArrayList<ImageIcon>();
+	private int indiceDaFiguraAtualOpcao2 = 0;
 	private JLabel containerImagemOpcao2;
 	
 	public TelaDeClassificacao(AcoesDeTela tela){
 		this.execucaoPrograma = tela;
 		gerarTelaDeClassificacao();
-		gerarBotaoOpcao1();
-		gerarBotaoOpcao2();
-		gerarBotaoReiniciar();
-		gerarBotaoSair();
+		gerarBotao(Botao.OPCAOA);
+		gerarBotao(Botao.OPCAOB);
+		gerarBotao(Botao.REINICIAR);
+		gerarBotao(Botao.VOLTAR);
+		gerarBotao(Botao.IMAGEM_ANTERIOR_OPCAOA);
+		gerarBotao(Botao.PROXIMA_IMAGEM_OPCAOA);
+		gerarBotao(Botao.IMAGEM_ANTERIOR_OPCAOB);
+		gerarBotao(Botao.PROXIMA_IMAGEM_OPCAOB);
 		gerarContainerImagemOpcao1e2();
 		gerarContainerDescricaoOpcao1e2();
 		
@@ -78,108 +89,86 @@ public class TelaDeClassificacao {
 		JScrollPane containerScrollOpcao2 = new JScrollPane(containerDescricaoOpcao2);
 		containerScrollOpcao1.setBounds(25,325,256,150);
 		containerScrollOpcao2.setBounds(515,325,256,150);
-		//containerScrollOpcao1.setVisible(true);
 		telaDeClassificacao.add(containerScrollOpcao1);
-		//telaDeClassificacao.add(containerDescricaoOpcao1);
 		telaDeClassificacao.add(containerScrollOpcao2);
 	}
 	
-	private void gerarBotaoOpcao1(){
-		Font font = new Font("SansSerif", Font.BOLD, 20);
-		JButton opcao1 = new JButton();
-		opcao1.setForeground(Color.BLUE);
-		opcao1.requestFocus();
-		opcao1.setText("OPÇÃO A");
-		opcao1.setToolTipText("Clique aqui para executar a OPÇÃO A");
-		opcao1.setFont(font);
-		opcao1.setBounds(70, 500, 150, 50);
-		opcao1.addActionListener(new ActionListener() {
+	private void gerarBotao(final Botao botao){
+		int x = botao.getPosicao().getX();
+		int y = botao.getPosicao().getY();
+		int altura = botao.getDimensao().getAltura();
+		int largura= botao.getDimensao().getLargura();
+		JButton buttom = new JButton();
+		buttom.setForeground(botao.getCorDoTexto());
+		buttom.setText(botao.getTextoBotao());
+		buttom.setToolTipText(botao.getTextoDicaDoBotao());
+		buttom.setFont(botao.getFont());
+		buttom.setBounds(x,y,largura,altura);
+		buttom.requestFocus();
+		buttom.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				execucaoPrograma.executarOpcao1();
+				switch(botao){
+				case OPCAOA:
+					execucaoPrograma.executarOpcao1();
+					break;
+				case OPCAOB:
+					execucaoPrograma.executarOpcao2();
+					break;
+				case REINICIAR:
+					execucaoPrograma.reiniciarClassificacao();
+					break;
+				case VOLTAR:
+					execucaoPrograma.botaoVoltar();
+					break;
+				case PROXIMA_IMAGEM_OPCAOA:
+					if(indiceDaFiguraAtualOpcao1 >= listaDeFigurasOpcao1.size()-1){
+						indiceDaFiguraAtualOpcao1 = 0;
+					}
+					else{
+						indiceDaFiguraAtualOpcao1++;
+					}
+					containerImagemOpcao1.setIcon(listaDeFigurasOpcao1.get(indiceDaFiguraAtualOpcao1));
+					telaDeClassificacao.updateUI();
+					break;
+				case IMAGEM_ANTERIOR_OPCAOA:
+					if(indiceDaFiguraAtualOpcao1 <= 0){
+						indiceDaFiguraAtualOpcao1 = listaDeFigurasOpcao1.size()-1;
+					}
+					else{
+						indiceDaFiguraAtualOpcao1--;
+					}
+					containerImagemOpcao1.setIcon(listaDeFigurasOpcao1.get(indiceDaFiguraAtualOpcao1));
+					telaDeClassificacao.updateUI();
+					break;
+				case PROXIMA_IMAGEM_OPCAOB:
+					if(indiceDaFiguraAtualOpcao2 >= listaDeFigurasOpcao2.size()-1){
+						indiceDaFiguraAtualOpcao2 = 0;
+					}
+					else{
+						indiceDaFiguraAtualOpcao2++;
+					}
+					containerImagemOpcao2.setIcon(listaDeFigurasOpcao2.get(indiceDaFiguraAtualOpcao2));
+					telaDeClassificacao.updateUI();
+					break;
+				case IMAGEM_ANTERIOR_OPCAOB:
+					if(indiceDaFiguraAtualOpcao2 <= 0){
+						indiceDaFiguraAtualOpcao2 = listaDeFigurasOpcao2.size()-1;
+					}
+					else{
+						indiceDaFiguraAtualOpcao2--;
+					}
+					containerImagemOpcao2.setIcon(listaDeFigurasOpcao2.get(indiceDaFiguraAtualOpcao2));
+					telaDeClassificacao.updateUI();
+					break;
+					
+				
+				}
 				
 			}
 		});
-		telaDeClassificacao.add(opcao1);
-	}
-	
-	private void gerarBotaoOpcao2(){
-		Font font = new Font("SansSerif", Font.BOLD, 20);
-		JButton opcao2 = new JButton();
-		opcao2.setForeground(Color.BLUE);
-		opcao2.setText("OPÇÃO B");
-		opcao2.setToolTipText("Clique aqui para executar a OPÇÃO B");
-		opcao2.setFont(font);
-		opcao2.setBounds(570, 500, 150, 50);
-		opcao2.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				execucaoPrograma.executarOpcao2();
-				
-			}
-		});
-		telaDeClassificacao.add(opcao2);
-	}
-	
-	private void gerarBotaoManipulacaoImagem(String nomeBotao,
-			String textoDicaDoBotao, int posicaoX, int posicaoY){
-		Font font = new Font("SansSerif", Font.BOLD, 20);
-		JButton imagem = new JButton();
-		imagem.setForeground(Color.BLUE);
-		imagem.setText(nomeBotao);
-		imagem.setToolTipText(textoDicaDoBotao);
-		imagem.setFont(font);
-		imagem.setBounds(posicaoX, posicaoY, 150, 50);
-		imagem.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				execucaoPrograma.executarOpcao2();
-				
-			}
-		});
-		telaDeClassificacao.add(imagem);
-	}
-	
-	
-	private void gerarBotaoSair(){
-		Font font = new Font("SansSerif", Font.BOLD, 15);
-		JButton sair = new JButton();
-		sair.setForeground(Color.RED);
-		sair.setText("SAIR");
-		sair.setToolTipText("<html>Se você clicar aqui <br> o programa será <font color='red'> <b> ENCERRADO </b> </font></html>");
-		sair.setFont(font);
-		sair.setBounds(325, 100, 150, 50);
-		sair.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				execucaoPrograma.botaoSair();
-				
-			}
-		});
-		telaDeClassificacao.add(sair);
-	}
-	
-	private void gerarBotaoReiniciar(){
-		Font font = new Font("SansSerif", Font.BOLD, 15);
-		JButton reiniciar = new JButton();
-		reiniciar.setForeground(Color.BLACK);
-		reiniciar.setText("<html> <center>REINICIAR<br>CLASSIFICAÇÃO<center></html>");
-		reiniciar.setToolTipText("Clique aqui para reiniciar a classificação");
-		reiniciar.setFont(font);
-		reiniciar.setBounds(325, 25, 150, 50);
-		reiniciar.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				execucaoPrograma.reiniciarClassificacao();
-				
-			}
-		});
-		telaDeClassificacao.add(reiniciar);
+		telaDeClassificacao.add(buttom);
 	}
 	
 	public void setDescricaoOpcao1(String descricao){
@@ -190,19 +179,37 @@ public class TelaDeClassificacao {
 		containerDescricaoOpcao2.setText(descricao);
 		containerDescricaoOpcao2.setCaretPosition(0);
 	}
-	public void setImagemOpcao1(ImageIcon image){
-		image.setImage(image.getImage().getScaledInstance(256, 256, 100));
-		containerImagemOpcao1.setIcon(image);
+	public void setImagemOpcao1(List<ImageIcon> image){
+		limparListaDeFigurasOpcao1();
+		for(ImageIcon elemento: image){
+			elemento.setImage(elemento.getImage().getScaledInstance(256, 256, 100));
+			listaDeFigurasOpcao1.add(elemento);
+		}
+		containerImagemOpcao1.setIcon(image.get(0));
 		telaDeClassificacao.updateUI();
 	}
-	public void setImagemOpcao2(ImageIcon image){
-		image.setImage(image.getImage().getScaledInstance(256, 256, 100));
-		containerImagemOpcao2.setIcon(image);
+	public void setImagemOpcao2(List<ImageIcon> image){
+		limparListaDeFigurasOpcao2();
+		for(ImageIcon elemento: image){
+			elemento.setImage(elemento.getImage().getScaledInstance(256, 256, 100));
+			listaDeFigurasOpcao2.add(elemento);
+		}
+		containerImagemOpcao2.setIcon(listaDeFigurasOpcao2.get(0));
 		telaDeClassificacao.updateUI();
 	}
 	
 	public JPanel getTelaDeClassificacao(){
 		return telaDeClassificacao;
+	}
+	
+	private void limparListaDeFigurasOpcao1(){
+		listaDeFigurasOpcao1.clear();
+		indiceDaFiguraAtualOpcao1 = 0;
+	}
+	
+	private void limparListaDeFigurasOpcao2(){
+		listaDeFigurasOpcao2.clear();
+		indiceDaFiguraAtualOpcao2 = 0;
 	}
 
 }

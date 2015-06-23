@@ -1,4 +1,4 @@
-package apresentacao;
+package enumeradores;
 
 public enum Icones {
 	LOGOTIPO("/logotipo.png"),

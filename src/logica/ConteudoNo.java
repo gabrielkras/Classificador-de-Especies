@@ -1,24 +1,27 @@
 package logica;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.ImageIcon;
 
 import interfaces.Conteudo;
 
 public class ConteudoNo implements Conteudo {
 	
-	private ImageIcon imagem;
+	private List<ImageIcon> imagem;
 	private String descricao;
 	private String nomeDaEspecie;
 	
-	public ConteudoNo(ImageIcon imagem, String descricao, String nomeDaEspecie) {
-		this.imagem = imagem;
+	public ConteudoNo(List<ImageIcon> imagem, String descricao, String nomeDaEspecie) {
+		this.imagem = new ArrayList<ImageIcon>(imagem);
 		this.descricao = descricao;
 		this.nomeDaEspecie = nomeDaEspecie;
 	}
 
 	@Override
-	public void setImagem(ImageIcon imagem) {
-		this.imagem = imagem;
+	public void setListaImagem(List<ImageIcon> imagem) {
+		this.imagem = new ArrayList<ImageIcon>(imagem);
 		
 	}
 
@@ -33,8 +36,8 @@ public class ConteudoNo implements Conteudo {
 	}
 
 	@Override
-	public ImageIcon getImage() {
-		return this.imagem;
+	public List<ImageIcon> getListaImage() {
+		return new ArrayList<ImageIcon>(this.imagem);
 	}
 
 	@Override
