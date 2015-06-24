@@ -58,8 +58,10 @@ public class ExecucaoPrograma implements AcoesDeTela, SaidaPrograma{
 		try{
 			if((elementosDaEstrutura.retornarObjeto(opcaoA.getNoEsquerdo()) == null)
 					&& (elementosDaEstrutura.retornarObjeto(opcaoA.getNoDireito()) == null)){
+					ImageIcon image = new FabricaDeImagens().obterImagem(Icones.LOGOTIPO);
+					image.setImage(image.getImage().getScaledInstance(100, 120, 100));
 					JOptionPane.showMessageDialog(telaDoPrograma.getFrame(), estruturaArquivos.lerArquivoDeConfig("/MSG-CLASSIFICACAO-ESPECIE.txt")
-							+opcaoA.getConteudo().getNomeDaEspecie()+"</i></b></font></html>", "Chave Artificial para Identificação de Espécies", 3);
+							+opcaoA.getConteudo().getNomeDaEspecie()+"</i></b></font></html>", "Chave Artificial para Identificação de Espécies", 0,image);
 			}
 			else{
 				opcaoB = (No) elementosDaEstrutura.retornarObjeto(opcaoA.getNoDireito());
@@ -76,8 +78,10 @@ public class ExecucaoPrograma implements AcoesDeTela, SaidaPrograma{
 		try{
 			if((elementosDaEstrutura.retornarObjeto(opcaoB.getNoEsquerdo()) == null)
 				&& (elementosDaEstrutura.retornarObjeto(opcaoB.getNoDireito()) == null)){
+				ImageIcon image = new FabricaDeImagens().obterImagem(Icones.LOGOTIPO);
+				image.setImage(image.getImage().getScaledInstance(100, 120, 100));
 				JOptionPane.showMessageDialog(telaDoPrograma.getFrame(), estruturaArquivos.lerArquivoDeConfig("/MSG-CLASSIFICACAO-ESPECIE.txt")
-						+opcaoB.getConteudo().getNomeDaEspecie()+"</i></b></font></html>", "Chave Artificial para Identificação de Espécies", 3);
+						+opcaoB.getConteudo().getNomeDaEspecie()+"</i></b></font></html>", "Chave Artificial para Identificação de Espécies",0,image);
 			}
 			else{
 				opcaoA = (No) elementosDaEstrutura.retornarObjeto(opcaoB.getNoEsquerdo());
@@ -99,12 +103,12 @@ public class ExecucaoPrograma implements AcoesDeTela, SaidaPrograma{
 
 	@Override
 	public void carregarArquivo() {
-		zerarVariaveisDeAmbiente();
 		String caminhoDoArquivo;
 		JFileChooser file = new JFileChooser();
 		int result = file.showOpenDialog(telaDoPrograma.getFrame());
 		if(result == JFileChooser.APPROVE_OPTION){
 			caminhoDoArquivo = file.getSelectedFile().getAbsolutePath();
+			zerarVariaveisDeAmbiente();
 		}
 		else{
 			return;
